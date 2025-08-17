@@ -77,7 +77,7 @@ async def search_reviews_by_title(
     limit: int = 5
 ) -> str:
     """
-    Search New York Times movie *reviews* by movie title.
+    Search New York Times movie *article* by movie title.
     Date filters use publication dates (Article Search params).
     Args:
         title: movie title or keywords to search (e.g., "Oppenheimer")
