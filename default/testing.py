@@ -3,6 +3,7 @@ import os
 import datetime as dt
 import httpx
 from mcp.server.fastmcp import FastMCP
+import asyncio
 
 # ---------- Server ----------
 mcp = FastMCP("nyt_article_search_movies", log_level="ERROR")
@@ -153,5 +154,22 @@ async def get_critics_picks(
     formatted = [format_doc(d) for d in filtered[:max(1, int(limit))]]
     return "\n---\n".join(formatted)
 
+async def testing():
+    """For testing the output"""
+    # Test search_reviews_by_title
+    print("--- Testing search_reviews_by_title ---")
+    reviews = await search_reviews_by_title("Dune", limit=2)
+    print(reviews)
+    print("---")
+    
+    # Test get_critics_picks
+    print("--- Testing get_critics_picks ---")
+    picks = await get_critics_picks(limit=2)
+    print(picks)
+    print("---")
+
 if __name__ == "__main__":
+    # To test, comment out mcp.run and uncomment the following:
+    # import asyncio
+    # asyncio.run(testing())
     mcp.run(transport="stdio")
